@@ -8,28 +8,53 @@ let showData = getId('showData');
 /* Ajax Call */
 
 var request;
-if(window.XMLHttpRequest){
+if (window.XMLHttpRequest) {
   request = new XMLHttpRequest();
 }
 
 /* Wait The Click Event */
 
-send.addEventListener('click',insertData);
-function insertData(){
+send.addEventListener('click', insertData);
+function insertData() {
   let user = username.value;
   let data = content.value;
-  request.onload = function (){
-    if(this.status == 200){
-      let getData = request.responseText;
-      showData.innerHTML += getData+'<br>';
+  let str;
+  request.onload = function() {
+    if (this.status == 200) {
+      let jsonString = JSON.parse(request.responseText);
+    jsonString.forEach((data)=>{
+      let username = data.username;
+      let datas = data.data;
+      str += username + " : " + datas + '<br>';
+      showData.innerHTML = str;
+    })
     }
   }
-  request.open('GET','insert.php?user='+user+'&data='+data,true);
+  request.open('GET', 'insert.php?user='+user+'&data='+data, true);
   request.send();
 }
 
+setInterval(retrieveData, 1000);
+function retrieveData(){
+  let str;
+  request.onload = function() {
+    if (this.status == 200) {
+      let jsonString = JSON.parse(request.responseText);
+    jsonString.forEach((data)=>{
+      let username = data.username;
+      let datas = data.data;
+      str += username + " : " + datas + '<br>';
+      showData.innerHTML = str;
+    })
+    }
+  }
+  request.open('GET', 'retrieve.php', true);
+  request.send();
+}
+
+
 /* Query Slector */
 
-function getId(id){
+function getId(id) {
   return document.querySelector('#'+id);
 }
