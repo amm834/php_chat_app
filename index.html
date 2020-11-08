@@ -7,8 +7,13 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="assets/style/app.css">
   <title>PHP Chat App</title>
+  <script src="assets/scripts/vconsole.js"></script>
+  <script>
+    var vConsole = new VConsole();
+  </script>
+
 </head>
 <body>
 
@@ -16,20 +21,20 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="card p-0">
-        <div class="card-header bg-dark text-light">
+        <div class="card-header bg-dark text-light copy">
           PHP Chat Application
         </div>
-        <div class="card-body" style="min-height:350px;">
-          Body
+        <div class="card-body" style="min-height:350px;" id="showData">
+        <!-- Showing Chat Data -->
         </div>
         <div class="card-footer">
           <div class="row">
             <div class="form-group col-md-3">
-              <input type="text" class="form-control" placeholder="Username" />
+              <input type="text" class="form-control" placeholder="Username" id="username" />
             </div>
             <div class="input-group my-3">
-              <input type="text" class="form-control" placeholder="Type Something" aria-label="Recipient's username" aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Send</button>
+              <input type="text" class="form-control" placeholder="Type Something" id="content">
+              <button class="btn btn-outline-secondary" type="button" id="send">Send</button>
             </div>
           </div>
 
@@ -42,6 +47,6 @@
 
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
-
+  <script src="assets/scripts/app.js"></script>
 </body>
 </html>
